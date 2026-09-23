@@ -54,7 +54,7 @@ La skill commence par une question : **as-tu déjà un site ?**
 | **3 bis. Le rapport technique** (A) | À corriger (P0, P1, P2), à vérifier à la main, ce qui est déjà bon | Tu lis |
 | **4. OpenSEO** | Elle te donne la commande de connexion, et la marche à suivre pour la Search Console | Tu te connectes |
 | **5. Le plan de dépense** | Elle lit la Search Console (gratuit), puis t'annonce chaque appel payant, en crédits | Tu valides le budget |
-| **6. La recherche** | Tes termes, les requêtes voisines, tes concurrents, les résultats Google réels | Rien |
+| **6. La recherche, en tours** | Elle part des requêtes que tu vises, construit un dictionnaire de variantes, les teste, et itère avec toi jusqu'à trouver des requêtes sans difficulté mais avec un intérêt commercial | Tu orientes chaque tour |
 | **7. Le rapport** | Un fichier markdown avec les tableaux et le plan des 30 prochains jours | Tu lis, tu produis |
 
 ## Ce que ça coûte
@@ -62,7 +62,7 @@ La skill commence par une question : **as-tu déjà un site ?**
 | Outil | Rôle | Coût |
 |---|---|---|
 | [Claude Code](https://claude.com/claude-code) | Pilote l'ensemble | ton abonnement |
-| [OpenSEO](https://openseo.so) | Volume, difficulté, CPC, qui ranke sur quoi | essai 0,50 $, puis 10 $ par mois qui incluent 10 $ d'usage |
+| [OpenSEO](https://openseo.so) | Volume, difficulté, CPC, qui ranke sur quoi | 10 $ de crédits, une fois : prends-les, puis désabonne-toi, ils restent |
 | Google Search Console | Tes requêtes et positions réelles | 0 € |
 | PageSpeed Insights | La vitesse et la qualité technique | 0 € |
 

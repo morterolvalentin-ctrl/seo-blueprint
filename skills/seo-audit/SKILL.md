@@ -83,7 +83,7 @@ mémoire.** S'il en manque un, dis-le et propose de relancer l'installation :
 | 3 bis | Rapport technique : à corriger, à vérifier | (sauté) | **Il lit** |
 | 4 | Connexion OpenSEO + Search Console | Connexion OpenSEO | **Il se connecte** |
 | 5 | Search Console (gratuit), puis plan de dépense | Plan de dépense | **Il valide le budget** |
-| 6 | Recherche des requêtes | Recherche des requêtes | |
+| 6 | Recherche des requêtes, en tours | Recherche des requêtes, en tours | **Il oriente chaque tour** |
 | 7 | Rapport final | Rapport final + socle technique à poser | |
 
 ---
@@ -208,7 +208,9 @@ Pose ces questions en un seul message, il répond comme il veut :
 1. Qu'est-ce que tu vends, ou vas vendre ? (produit, service, prix approximatif)
 2. À qui ? Le type de client, le plus précis possible.
 3. Dans quel pays et quelle langue ?
-4. Les mots que tu imagines que tes clients tapent sur Google (même si tu n'es pas sûr).
+4. **Les requêtes sur lesquelles tu voudrais ranker** : les mots que tu
+   imagines que tes clients tapent sur Google, même si tu n'es pas sûr. Cinq
+   à dix, c'est parfait : c'est le point de départ du dictionnaire.
 5. Deux ou trois concurrents, ou des sites que tes clients consultent déjà.
 6. Pourquoi cette étude maintenant : choisir un nom, valider un marché,
    préparer le site, comparer deux cibles ?
@@ -246,10 +248,10 @@ Sinon, explique en quatre lignes :
 
 - ce qu'est OpenSEO : les données de recherche de Google (volume, difficulté,
   coût au clic, qui ranke sur quoi), lisibles par Claude ;
-- **le prix** : essai gratuit à 0,50 $ (assez pour tester, pas pour une
-  étude), puis 10 $ par mois qui incluent 10 $ d'usage. Une étude complète de
-  marché a coûté 1,28 $ à l'auteur de ce blueprint : les 10 $ couvrent
-  largement une étude ;
+- **le prix** : prendre 10 $ de crédits, puis se désabonner tout de suite.
+  Les crédits restent, et 10 $ suffisent pour très longtemps : une étude
+  complète de marché a coûté 1,28 $ à l'auteur de ce blueprint. L'essai
+  gratuit (0,50 $) permet de vérifier la connexion avant de payer ;
 - la commande à lancer dans son terminal (hors de Claude) :
   `claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp`
 - puis : quitter Claude Code, le relancer, taper `/mcp`, choisir `openseo`,
@@ -317,6 +319,12 @@ cher de `openseo.md`. Exemple de forme :
 | Lire les résultats Google | get_serp_results | 10 finalistes, profondeur 20 | ~50 |
 | **Total** | | | **...** |
 
+Chaque estimation se calcule à partir du coût unitaire écrit dans la
+description de l'outil, ou à défaut dans `openseo.md` (par exemple
+`research_keywords` : ~54 crédits **par graine**, donc 3 graines ≈ 160). Jamais
+d'estimation au jugé, et jamais « variable » : si tu ne trouves pas le coût,
+dis-le et prends la borne haute.
+
 Donne le total en crédits et le solde restant prévu. Attends son accord.
 S'il a peu de crédits (essai gratuit), propose un plan réduit : les requêtes
 connues seulement, et 3 SERP.
@@ -365,22 +373,71 @@ résultats Google ne donnent qu'un titre et une description par page. « Aucun
 concurrent ne propose de calculateur » exige d'avoir ouvert leurs pages ;
 sinon écris « à vérifier en ouvrant les 3 premiers résultats ».
 
-### 6.2 · l'ordre des appels
+### 6.2 · le dictionnaire, et les tours d'itération
 
-Suis l'ordre de `openseo.md` et le plan validé :
+La recherche ne se fait pas en une passe. Elle se fait en **tours**, et
+l'utilisateur t'aide à chaque tour. L'objectif : trouver des requêtes **sans
+difficulté, mais avec un intérêt commercial** (CPC non nul, intention
+commerciale ou transactionnelle, ou une question que seul son client se pose).
 
-1. **Un seul `get_keyword_metrics`** sur tout ce qu'on connaît déjà : les termes
-   de la personne, les requêtes de la Search Console, et les requêtes évidentes
-   de chaque famille. Tu verras vite que plusieurs termes auxquels il croyait
-   sont morts : c'est un résultat, dis-le.
-2. **`research_keywords`** sur 3 à 5 graines, en un appel, limite 150, sans
-   clickstream.
-3. **`get_ranked_keywords`** sur 2 ou 3 concurrents proches (`limit` 50,
-   `minSearchVolume` 10, `excludeBrandTerms` avec leur nom).
-4. **Un `get_keyword_metrics`** sur les nouvelles requêtes retenues, pour avoir
-   difficulté, intention et CPC au même format.
-5. **`get_serp_results`** sur les 10 à 20 finalistes : qui tient la place, et
-   qu'est-ce qui manque dans ce qu'ils publient.
+**Tour 1 · du point de départ au dictionnaire.** Pars des requêtes qu'il t'a
+données (chemin B), ou de sa Search Console et de ses termes (chemin A).
+Construis un **dictionnaire** de 30 à 80 requêtes voisines, rangées par
+famille (les quatre familles de 6.1) :
+- les reformulations dans les mots du client (singulier, pluriel, ordre des mots, « logiciel » / « outil » / « application ») ;
+- les formes longues en question (« comment… », « combien… », « quel… ») ;
+- les problèmes concrets derrière la requête ;
+- les requêtes de liste, de modèle, de calculateur.
+
+**Majorité de formes courtes.** Les bases de volume ne mesurent que les
+requêtes assez fréquentes : les formes de 2 à 4 mots (« logiciel boulangerie »,
+« marge boulangerie ») reviennent chiffrées, les questions longues en langage
+naturel reviennent presque toujours sans donnée (test réel : 4 requêtes
+chiffrées sur 43, toutes courtes). Mets au moins deux tiers de formes courtes.
+Les questions longues restent utiles, mais comme **angles de page** : une page
+qui ranke sur une forme courte ramasse ensuite ses questions longues.
+
+Montre-lui le dictionnaire, par famille, **avant** de le chiffrer, et demande :
+« Il manque des mots que tes clients emploient ? Il y en a qui ne sont pas du
+tout ton sujet ? ». Intègre ses corrections, puis chiffre tout en **un seul
+`get_keyword_metrics`**.
+
+**Présente le résultat en tableau**, trié en trois groupes :
+- **À prendre** : difficulté faible (sous 15, ou sous 30 si le site a déjà des positions) et intérêt commercial ;
+- **À creuser** : volume ou intérêt réel, mais difficulté moyenne, ou donnée « non mesurée » ;
+- **Écartées** : volume nul, hors sujet, ou tenues par des acteurs installés.
+
+Puis demande-lui ce qu'il en pense : quelles familles lui parlent, lesquelles
+ne correspondent pas à ses clients, et s'il voit d'autres angles à partir de
+ce qui ressort. **C'est lui qui connaît ses clients : ses réponses orientent
+le tour suivant.**
+
+**Si le tour revient presque vide** (la plupart des requêtes sans donnée),
+ce n'est pas un échec du marché : le dictionnaire était trop long ou trop
+précis. Dis-le, et passe directement au tour 2 avec des graines courtes :
+c'est `research_keywords` qui ramène les formulations que les gens tapent
+réellement.
+
+**Tour 2 · élargir là où ça répond.** Sur les familles qui ont donné des
+requêtes « à prendre » :
+1. `research_keywords` sur 3 à 5 graines tirées de ces familles, en un appel,
+   limite 150, sans clickstream. Filtre le bruit (voir 6.1).
+2. `get_ranked_keywords` sur 2 ou 3 concurrents proches (`limit` 50,
+   `minSearchVolume` 10, `excludeBrandTerms` avec leur nom) : sur quoi ils
+   rankent vraiment.
+3. Nouveau dictionnaire des requêtes découvertes, rechiffré en un seul
+   `get_keyword_metrics`. Même tableau en trois groupes, même question à
+   l'utilisateur.
+
+**Tour 3 et suivants, si besoin.** Continue tant que chaque tour apporte des
+requêtes « à prendre » et que le budget validé le permet. Arrête-toi quand un
+tour ne rapporte presque plus rien de nouveau, ou quand tu as 10 à 20
+finalistes solides. Annonce le coût de chaque tour avant de le lancer, calculé comme en 5.3. Trois
+tours suffisent dans la plupart des cas.
+
+**Dernière étape · lire les résultats Google.** `get_serp_results` sur les 10 à
+20 finalistes, profondeur 10 ou 20 : qui tient la place, et ce qui manque dans
+ce qu'ils publient.
 
 ### 6.3 · trier
 

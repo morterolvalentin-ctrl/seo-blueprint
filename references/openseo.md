@@ -26,18 +26,16 @@ https://app.openseo.so/settings (API keys, affichée une seule fois), puis :
 claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp --header "Authorization: Bearer oseo_VOTRE_CLE"
 ```
 
-## Prix (relevé sur openseo.so/pricing en septembre 2026)
+## Prix : 10 $, une fois
 
-- **Essai gratuit** : 0,50 $ de crédits, sans carte bancaire. Suffisant pour
-  vérifier la connexion et lancer deux ou trois appels, pas une étude.
-- **Base Plan : 10 $ par mois, qui incluent 10 $ d'usage.** C'est le minimum
-  pour une vraie étude. Résiliable, avec 30 jours satisfait ou remboursé selon
-  leur page.
-- **Recharges** : à tout moment, elles n'expirent pas.
+- **La bonne méthode : prendre 10 $ de crédits, puis se désabonner
+  aussitôt.** Les crédits restent sur le compte, et 10 $ durent très longtemps.
+  Ne pas rester abonné à 10 $ par mois pour une étude ponctuelle.
+- **Essai gratuit** : 0,50 $ de crédits, sans carte bancaire. Pour vérifier la
+  connexion, pas pour une étude.
 - **La Search Console ne consomme rien.**
 - Ordre de grandeur réel : une étude complète d'un marché (1 275 requêtes
-  testées, 8 concurrents, 29 pages de résultats) a coûté **1,28 $**. Une étude
-  pour une petite activité tient largement dans les 10 $ du mois.
+  testées, 8 concurrents, 29 pages de résultats) a coûté **1,28 $**.
 
 Les coûts sont exprimés en **crédits** dans les outils. `whoami` donne le solde,
 gratuitement : c'est la seule mesure fiable de ce qu'une étape a coûté.
@@ -91,6 +89,7 @@ ou un préfixe de plugin). Cherche les outils dont le nom contient `openseo`.
 | Appel | Crédits réels |
 |---|---|
 | `get_keyword_metrics`, 28 requêtes, sans tendances | 19 |
+| `get_keyword_metrics`, 43 requêtes dont 39 sans donnée | 16 |
 | `research_keywords`, 1 graine, limite 150 + `get_serp_results`, 5 requêtes, profondeur 10 | 62 |
 
 Une étude complète pour une petite activité tient donc en quelques centaines
@@ -99,12 +98,10 @@ de crédits.
 ## L'ordre le moins cher
 
 1. `whoami` et les outils gratuits (projet, Search Console).
-2. Les requêtes déjà connues (Search Console, termes de la personne, requêtes
-   des concurrents devinées) : **un seul** `get_keyword_metrics`.
-3. `research_keywords` sur 3 à 5 graines bien choisies, en un appel.
-4. `get_ranked_keywords` sur 2 ou 3 concurrents.
-5. Rechiffrer d'un coup les nouvelles requêtes retenues : un `get_keyword_metrics`.
-6. `get_serp_results` sur les 10 à 20 finalistes, pour lire qui tient la place.
+2. Tour 1 : le dictionnaire (termes de la personne, Search Console, variantes) chiffré en **un seul** `get_keyword_metrics`.
+3. Tour 2 : `research_keywords` sur 3 à 5 graines en un appel, `get_ranked_keywords` sur 2 ou 3 concurrents, puis un `get_keyword_metrics` sur les nouvelles requêtes.
+4. Tours suivants si chaque tour rapporte encore : un `get_keyword_metrics` par tour.
+5. `get_serp_results` sur les 10 à 20 finalistes, pour lire qui tient la place.
 
 Annonce le budget de chaque étape en crédits **avant** de la lancer. Au-delà de
 1 000 crédits pour une étape, attends un accord explicite.
