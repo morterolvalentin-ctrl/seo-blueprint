@@ -16,8 +16,10 @@ Site : https://openseo.so · code source : https://github.com/every-app/open-seo
 claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp
 ```
 
-Puis relancer Claude Code, taper `/mcp`, choisir `openseo` et se connecter :
-la première connexion ouvre la page de login OpenSEO.
+Vérifier avec `claude mcp list` (la ligne `openseo` apparaît, « needs
+authentication » est normal). Puis quitter Claude Code, le relancer dans le
+même dossier, taper `/mcp`, choisir `openseo`, puis « Authenticate » : la page
+de login OpenSEO s'ouvre dans le navigateur.
 
 **Option 2, avec une clé API** (sans navigateur) : créer la clé dans
 https://app.openseo.so/settings (API keys, affichée une seule fois), puis :

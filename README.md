@@ -57,6 +57,22 @@ La skill commence par une question : **as-tu déjà un site ?**
 | **6. La recherche, en tours** | Elle part des requêtes que tu vises, construit un dictionnaire de variantes, les teste, et itère avec toi jusqu'à trouver des requêtes sans difficulté mais avec un intérêt commercial | Tu orientes chaque tour |
 | **7. Le rapport** | Un fichier markdown avec les tableaux et le plan des 30 prochains jours | Tu lis, tu produis |
 
+## Brancher OpenSEO
+
+La skill te guide au bon moment, mais voici les étapes si tu veux le faire avant :
+
+1. Crée ton compte sur [app.openseo.so](https://app.openseo.so) (essai gratuit à 0,50 $ pour vérifier que tout marche).
+2. Prends 10 $ de crédits, puis résilie l'abonnement tout de suite : les crédits restent, et ils durent très longtemps.
+3. Ajoute le serveur MCP à Claude Code :
+   ```bash
+   claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp
+   ```
+4. Relance Claude Code, tape `/mcp`, choisis `openseo`, puis « Authenticate », et connecte-toi dans le navigateur.
+5. Avec un site : dans [app.openseo.so](https://app.openseo.so), connecte ta Search Console (gratuit, lecture seule).
+
+Sans navigateur (serveur distant) : crée une clé API dans les réglages OpenSEO, puis
+`claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp --header "Authorization: Bearer oseo_TA_CLE"`.
+
 ## Ce que ça coûte
 
 | Outil | Rôle | Coût |

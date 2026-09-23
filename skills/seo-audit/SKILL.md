@@ -244,18 +244,40 @@ Ouvre `~/.claude/seo-blueprint/openseo.md`.
 nom contient `openseo`. Si `whoami` existe, appelle-le (gratuit). S'il répond,
 passe à la phase 5.
 
-Sinon, explique en quatre lignes :
+Sinon, explique en deux lignes ce qu'est OpenSEO (les données de recherche de
+Google : volume, difficulté, coût au clic, qui ranke sur quoi, lisibles par
+Claude) et **ce que ça coûte** : prendre 10 $ de crédits, puis se désabonner
+tout de suite. Les crédits restent, et 10 $ suffisent pour très longtemps :
+une étude complète de marché a coûté 1,28 $ à l'auteur de ce blueprint.
 
-- ce qu'est OpenSEO : les données de recherche de Google (volume, difficulté,
-  coût au clic, qui ranke sur quoi), lisibles par Claude ;
-- **le prix** : prendre 10 $ de crédits, puis se désabonner tout de suite.
-  Les crédits restent, et 10 $ suffisent pour très longtemps : une étude
-  complète de marché a coûté 1,28 $ à l'auteur de ce blueprint. L'essai
-  gratuit (0,50 $) permet de vérifier la connexion avant de payer ;
-- la commande à lancer dans son terminal (hors de Claude) :
-  `claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp`
-- puis : quitter Claude Code, le relancer, taper `/mcp`, choisir `openseo`,
-  se connecter dans le navigateur, et revenir en tapant `/seo-audit`.
+Puis l'installation, **dans cet ordre** :
+
+1. **Le compte.** Il crée son compte sur https://app.openseo.so. L'essai
+   gratuit (0,50 $) suffit pour vérifier que tout marche avant de payer.
+2. **Les crédits.** Il prend l'offre à 10 $, puis, dans les réglages de
+   facturation, il résilie l'abonnement tout de suite. Les crédits achetés
+   restent sur le compte.
+3. **Le MCP.** Propose de lancer la commande toi-même (outil Bash), c'est le
+   plus simple pour lui :
+   ```bash
+   claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp
+   ```
+   S'il préfère, il la colle dans un terminal. `--scope user` rend OpenSEO
+   disponible dans tous ses projets. Vérifie avec `claude mcp list` : la ligne
+   `openseo` doit apparaître (« needs authentication » est normal à ce stade).
+4. **La connexion.** Les nouveaux serveurs ne se chargent qu'au démarrage :
+   il quitte Claude Code (`/exit`), le relance **dans le même dossier**, tape
+   `/mcp`, choisit `openseo`, puis « Authenticate » : une page OpenSEO s'ouvre
+   dans son navigateur, il se connecte et autorise l'accès.
+5. **Le retour.** Il tape `/seo-audit` : la skill retrouve `etat.md` et
+   reprend ici.
+
+Si le navigateur ne peut pas s'ouvrir (serveur distant, terminal sans
+interface), l'alternative est une clé API : il la crée dans
+https://app.openseo.so/settings (API keys, affichée une seule fois), puis :
+`claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp --header "Authorization: Bearer oseo_SA_CLE"`.
+Ne lui demande jamais de te coller la clé dans la conversation : il lance
+cette commande lui-même.
 
 **Chemin A uniquement : la Search Console.** Dans l'application OpenSEO
 (https://app.openseo.so), il connecte la Search Console et choisit la
