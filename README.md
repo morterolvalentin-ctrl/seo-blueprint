@@ -7,6 +7,7 @@ C'est la méthode qu'on a appliquée chez [Scalon](https://scalon.fr) : site
 ouvert à Google le 26 août 2026, zéro lien entrant, cité dans l'Aperçu IA de
 Google dès le lendemain, et une étude de mots-clés complète pour 1,28 $.
 
+👉 **[Lire le guide](https://app.notion.com/p/N-1-sur-Google-en-23-jours-pour-1-28-le-blueprint-SEO-la-skill-copier-l-audit-technique-et-l-3e4358636d9b81408b1be52b0ca4e833)** · pourquoi chaque étape existe
 👉 **[Prendre 30 minutes avec Valentin](https://cal.com/valentin-morterol-ezc5qn/30min)**
 
 ---
